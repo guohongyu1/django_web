@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div class="aaa">
+ <h>1</h>
+<h>2</h>
+<h>3</h>
+</div>
+<a class="gg">666</a>
+<script src="/static/jquery-3.1.1.js"></script>
+<script>
+    $(".aaa").each(function () {
+        y=$(this).text()
+        $(".gg").click(function (x) {
+        console.log(y)
+    })
+    })
+
+</script>
+</body>
+</html>

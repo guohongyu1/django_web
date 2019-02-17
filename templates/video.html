@@ -1,0 +1,88 @@
+{% include 'base.html' %}
+    <style>
+        .condition{
+            top: 10px;
+        }
+        .sel{
+
+        }
+
+        .condition a {
+            {#float: left;#}
+            padding: 5px 8px;
+            display: inline-block;
+            border: 1px solid #dddddd;
+        }
+
+        .condition a.active {
+
+            background-color: orangered;
+            color: white;
+        }
+        .titles:hover{
+            color: #67b168;
+        }
+    </style>
+<hr/>
+<div class="condition" style="position: relative">
+    <div>
+        {% if kwargs.direction_id == 0 %}
+            <a class="active" href="/video-0-{{ kwargs.classification_id }}-{{ kwargs.level_id }}.html">全部</a>
+        {% else %}
+            <a  href="/video-0-{{ kwargs.classification_id }}-{{ kwargs.level_id }}.html">全部</a>
+        {% endif %}
+        {% for item in list_direction %}
+            {% if item.id == kwargs.direction_id %}
+                <a class="active" href="/video-{{ item.id }}-{{ kwargs.classification_id }}-{{ kwargs.level_id }}.html">{{ item.name }}</a>
+            {% else %}
+                <a href="/video-{{ item.id }}-{{ kwargs.classification_id }}-{{ kwargs.level_id }}.html">{{ item.name }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+<hr/>
+    <div>
+        {% if kwargs.classification_id == 0 %}
+            <a class="active" href="/video-{{ kwargs.direction_id }}-0-{{ kwargs.level_id }}.html">全部</a>
+        {% else %}
+            <a  href="/video-{{ kwargs.direction_id }}-0-{{ kwargs.level_id }}.html">全部</a>
+        {% endif %}
+        {% for item in list_classification %}
+            {% if item.id == kwargs.classification_id %}
+                <a class="active" href="/video-{{ kwargs.direction_id }}-{{ item.id }}-{{ kwargs.level_id }}.html">{{ item.name }}</a>
+            {% else %}
+                <a href="/video-{{ kwargs.direction_id }}-{{ item.id }}-{{ kwargs.level_id }}.html">{{ item.name }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+<hr/>
+    <div>
+         {% if kwargs.level_id == 0 %}
+            <a class="active" href="/video-{{ kwargs.direction_id }}-{{ kwargs.classification_id  }}-0.html">全部</a>
+        {% else %}
+            <a  href="/video-{{ kwargs.direction_id }}-{{ kwargs.classification_id  }}-0.html">全部</a>
+        {% endif %}
+        {% for item in list_level %}
+            {% if item.id == kwargs.level_id %}
+                <a class="active" href="/video-{{ kwargs.direction_id }}-{{kwargs.classification_id }}-{{ item.id }}.html">{{ item.title }}</a>
+            {% else %}
+                <a href="/video-{{ kwargs.direction_id }}-{{kwargs.classification_id }}-{{ item.id }}.html">{{ item.title }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+{#    <h3>视频</h3>#}
+<hr/>
+<div style="">
+        {% for item in list_video %}
+{#            <div >#}
+             <a href="{{ item.href }}"  style="width: 18%">
+                 <img src="{{ item.img }}" style="width: 100%;height:380px; ">
+                 <p class="titles" style="text-align: center">{{ item.title }}</p>
+             </a>
+
+{#            </div>#}
+
+{#        <span style="margin-left: 0">{{ item.title }}</span>#}
+        {% endfor %}
+</div>
+
+</div>
