@@ -1,0 +1,85 @@
+{% include 'base.html' %}
+<style>
+    .book{
+            float: left;
+            width: 965px;
+            margin: 40px;
+        }
+
+    .video a{
+        margin: 10px;
+    }
+
+    .intro{
+        font-size: 16px;
+        line-height: 24px;
+        overflow: hidden;
+        height: 48px;
+        margin-bottom: 8px;
+        color: #666;
+    }
+article h4{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+</style>
+<hr>
+<div style="margin: auto; ">
+    <article style="width: 216px;float: left;margin-top: 40px">
+    <article class="">
+<h4>分类</h4>
+{% for item in types %}
+    <a  href="" style="margin: 30px">{{ item.title }}</a>
+{% endfor %}
+</article>
+<hr>
+<article style="">
+<h4>状态</h4>
+{% for item in status %}
+    <a  href="" style="margin: 30px">{{ item.status }}</a>
+{% endfor %}
+</article>
+    <hr>
+<article style="">
+<h4>字数</h4>
+{% for item in wordcount %}
+    <a  href="" style="display: block;margin: 30px">{{ item.get_status_display }}</a>
+{% endfor %}
+</article>
+</article>
+<div class="book">
+        {% for item in cur_books %}
+             <article  style="float: left;width: 477px;margin-top: 20px">
+                 <img src="{{ item.img }}" style="float: left;width: 102px;height: 136px;overflow: hidden">
+                 <div style="float: left;overflow: hidden;width: 340px;height: 136px;margin: 10px;">
+                        <p class=""><a href="{{ item.href }}" style="">{{ item.name }}</a></p>
+                     <div style="overflow: hidden;width: 340px;margin: 10px 10px 0 0">
+                        <p class="" style="float: left">{{ item.author }}</p>
+                         <p class="" style="float: left;margin-left: 10px">{{ item.count }}</p>
+                     </div>
+                     <p class="intro" style="margin: 10px 10px 0 0">{{ item.book_intro }}</p>
+
+                 </div>
+             </article>
+        {% endfor %}
+</div>
+<footer >
+    <div class="page">
+  <ul class="pagination" >
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+      {% for i in s %}
+       <li><a href="?_page={{ i }}">{{ i }}</a></li>
+      {% endfor %}
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</div>
+</footer>
+</div>

@@ -2,20 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="/static/bxslider-4-4.2.12/src/css/jquery.bxslider.css" rel="stylesheet">
-    <link href="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js" rel="stylesheet">
-    <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>绅士网</title>
+    <link rel="icon" type="image/x-icon" href="/static/logo/logo.png"/>
+{#    <link href="/static/bxslider-4-4.2.12/src/css/jquery.bxslider.css" rel="stylesheet">#}
     <style>
         * {
             margin: auto;
+            {#padding: 0;#}
+        }
+        body{
+            background: whitesmoke;
         }
 
         .headbar {
             height: 50px;
-            display: block;
+            {#display: block;#}
             min-width: 400px;
+            background: white;
         }
 
         .navbar {
@@ -23,6 +26,8 @@
             margin: 0 auto;
             background: #333;
             height: 50px;
+            border-radius: 4px;
+            {#text-align: center;#}
             {#padding-left: 150px;#}
         }
 
@@ -30,26 +35,31 @@
             float: left;
             display: inline-block;
             margin: 15px auto;
-            color: white;
+            cursor: pointer;
 
         }
 
         .logo {
             display: inline-block;
-            width: 128px;
-            height: 106px;
-            margin-top: -25px;
-            margin-left: 20px;
+            width: 100px;
+            height: 50px;
+            {#margin-top: -20px;#}
+            margin-left: 40px;
             float: left;
             background: url("/static/logo/logo.png");
         }
-
-        .tab:hover {
+        .tab a:hover {
             color: red;
         }
 
-        .bxslider {
-            margin: auto;
+        .tab a{
+            color: white;
+        }
+        a{
+            text-decoration: none;
+        }
+        li{
+            list-style-type: none;
         }
         .fa-bell:before{
             content: "\f0f3";
@@ -68,23 +78,133 @@
         .item img{
             width: 100%;
         }
+        .last{
+            float: right;
+            margin-right: 20px;
+        }
+        .search{
+            width: 40px;
+            border-radius: 20%;
+        }
+        .form-inline{
+             float: right;
+            display: inline-block;
+            margin: 6px auto;
+            cursor: pointer;
+
+        }
+    .book img{
+        transition: all 0.6s;
+    }
+   .book img:hover{
+  transform: scale(1.4);
+}
+        .navbar .sel{
+            color: #5bc0de;
+        }
+        .bot{
+           width: 100px;
+            height: auto;
+            margin-top: 10px;
+            background:#333;
+            color: white;
+            {#text-align: left;#}
+            margin-right: -20px;
+
+        }
+        .bot p{
+            margin-left: 10px;
+        }
+        .pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  z-index: 2;
+  color: #23527c;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.page{
+    padding: 20px 25px 10px 10px;
+    text-align: center;
+}
+        .navbar li{
+            width: 80px;
+        }
 
     </style>
 </head>
 <body>
 <div class="headbar">
     <a class="logo"></a>
-    <div class="navbar">
-        <ul class="tab"><a href="index.html">首页</a></ul>
-        <ul class="tab" ><a href="/video-0-0-0.html">动漫</a></ul>
-        <ul class="tab">图片</ul>
-        <ul class="tab">游戏</ul>
-        <ul class="tab">COSPLAY</ul>
-        <ul class="tab">音乐</ul>
-        <ul class="tab">公告</ul>
-        <ul class="tab">常见问题</ul>
-        <ul class="tab">关于我们</ul>
+    <div class="navbar ">
+        <ul style="">
+            <li class="tab"><a href="index.html">首页</a></li>
+            <li class="tab" ><a href="/video-0-0-0.html">动漫</a></li>
+            <li class="tab"><a href="/img.html">图片</a></li>
+            <li class="tab"><a href="/novel.html?_page=1">小说</a></li>
+            <li class="tab"><a href="/img.html">游戏</a></li>
+            <li class="tab"><a href="/img.html">音乐</a></li>
+            <li class="tab"><a href="">COSPLAY</a></li>
+            <li class="tab last">
+                <a href="/img.html">常见问题</a>
+                <div class="bot">
+                   <p>意见箱</p>
+                    <p>关于我</p>
+                </div>
+            </li>
+        </ul>
+
+
+
+
+{#        <form class="form-inline" style="margin-top: 12px">#}
+{#  <div class="form-group" style="float: left">#}
+{#    <label class="sr-only" for="exampleInputAmount"></label>#}
+{#    <div class="input-group">#}
+{#      <input type="text" class="form-control" id="exampleInputAmount" placeholder="" >#}
+{#    </div>#}
+{#  </div>#}
+{#  <button type="submit" class="btn btn-primary" style="float: left">搜索</button>#}
+{#</form>#}
     </div>
 </div>
+<script src="/static/jquery-3.1.1.js"></script>
+<script>
+    $('.tab a').each(function () {
+        $(this).click(function () {
+            $(this).css('color','#337ab7').parent().siblings().children().css('color','white')
+        })
+    })
+    $('.bot').hide()
+    $('.last').hover(function () {
+        $('.bot').show()
+    },function () {
+        $('.bot').hide()
+    })
+
+</script>
 </body>
 </html>

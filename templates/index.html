@@ -1,221 +1,209 @@
-
 {% include 'base.html' %}
 {% load tags %}
-<div class="bxslider"  >
-    {% for img in list_img %}
-        <a href="{{ img.href }}"><img src="{{ img.img }}" style="width: 100%;height:400px"></a>
-    {% endfor %}
-</div>
-<div style="width: 100%;height: 200px;">
-    <h1 style="font-size: 18px;margin-left: 200px">最新公告</h1>
-    <ul style="width: 100%;margin-left: 150px">
-        {% for notice in list_notice %}
-            <div style="float: left;width:240px;height: 60px;margin: 0 28px 0 28px">
-                <i class="fa fa-bell fa-2x" aria-hidden="true" style="margin-left: -15px"></i>
-                <h4 style="display: inline-block">{{ notice.name }}</h4>
-{#                <div style="margin-left: 28px;float: left;">#}
-                <div class="notice">
-                    <div >{% get_date notice %}</div>
-                </div>
+<style>
+    .rank-list {
+        background: #e6e6e6;
+        width: 200px;
+    }
 
-{#                    <h6>......</h6>#}
-{#                    <a class="get" name="{{ notice.id }}">查看更多</a>#}
-{#                </div>#}
-{#            <input type="">#}
-            </div>
-        {% endfor %}
-    </ul>
+    .rank-item {
+        list-style: none;
+    {#list-style-type: none;#}
+    }
 
+    .num {
+        width: 20px;
+        height: 20px;
+        background: #999999;
+        text-align: center;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: -30px;
+    }
 
-</div>
-{#<div style="width: 100%;height: 200px;">#}
-     <h1 style="font-size: 18px;margin-left: 200px">资源介绍</h1>
+    .new_list {
+        width: 200px;
+        height: auto;
+        float: right;
+        margin-top: -670px;
+    }
 
+    .con {
+        padding: 10px;
 
+    }
 
-    <div id="container" class="w">
-        <div class="item">
+    .r {
+        background: #c3c3c3;
+        text-align: center;
+
+    }
+
+    .content {
+        width: 1000px;
+        margin-left: 20px;
+    }
+
+    .content .video a {
+        display: inline-block;
+        margin: 10px 10px;
+    }
+
+    .content .video a img {
+        width: 170px;
+        height: 300px;
+    }
+
+    .pic a {
+        position: absolute;
+        width: 500px;
+        height: 400px;
+        top: 50px;
+        left: 400px;
+    }
+
+    .pic {
+        width: 500px;
+        height: 400px;
+        {#overflow: hidden;#}
+        {#margin-left: 400px;#}
+    }
+    .cli li {
+        width: 20px;
+        height: 20px;
+        border-radius: 100px;
+        background: #c3c3c3;
+        display: inline-block;
+        {#margin-left: 380px;#}
+        {#z-index: 20000;#}
+
+    }
+
+    .cli {
+        {#z-index: 20000;#}
+        position: absolute;
+        margin-left: 650px;
+        margin-top: -20px;
+    }
+    .cli li:nth-child(1){
+        background:#265a88
+    }
+    .bxslider{
+        {#width: 500px;#}
+        {#height: 400px;#}
+        {#min-width: 500px;#}
+    }
+</style>
+<div>
+    <div class="bxslider">
+        <div class="pic">
+            {% for img in list_img %}
+                <a href="{{ img.href }}" id="{{ forloop.counter }}"><img src="{{ img.img }}"
+                                                                         style="width: 500px;height: 400px"></a>
+            {% endfor %}
         </div>
-        <div class="item">
+        <div style="">
+            <ul class="cli">
+            </ul>
         </div>
-        <div class="item">
-        </div>
-        <div class="item">
-        </div>
-{#        <div class="item">#}
-{#        </div>#}
     </div>
-
+    {#<hr>#}
+    <div style="margin-top: 30px;">
+        <header style="margin-left: 30px">
+            <h3 style="float: left;margin-top: -5px;">动漫</h3>
+            <div style="margin-left: 70px">
+                <a href="/video-0-0-0.html" style="float: left">更多>></a>
+                {% for item in list_classification %}
+                    <a href="/video-0-{{ item.id }}-0.html">{{ item.name }}</a> .
+                {% endfor %}
+            </div>
+        </header>
+        <hr>
+        <article class="content">
+            <div class="video">
+                {% for item in video_list %}
+                    <a href="{{ item.href }}">
+                        <img src="{{ item.img }}">
+                        <p class="titles" style="text-align: center">{{ item.title }}</p>
+                    </a>
+                {% endfor %}
+            </div>
+        </article>
+        <article class="new_list">
+            <h3 class="r">最新动漫</h3>
+            <ul class="rank-list">
+                {% for video in video_list %}
+                    <li class="rank-item">
+                        <div class="con">
+                            <div class="num">{% get_num video video_list %}</div>
+                            <a class="name">{{ video.title }}</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </article>
+    </div>
 </div>
 <script src="/static/jquery-3.1.1.js"></script>
-<script src="/static/bxslider-4-4.2.12/src/js/jquery.bxslider.js"></script>
 <script>
-    function my() {
-        alert(1)
-    }
-    {#$("#gg").text()#}
-    {#y=document.getElementById("#gg")#}
-    {#alert(x)#}
-    {#console.log($(".date").text())#}
-    $('.bxslider').bxSlider({
-        auto: true,
-        autoControls: true,
-        stopAutoOnClick: true,
-        pager: true,
-        slideWidth: 470,
-
-    });
-
-      $("[name=1]").click(function () {
-       {#nid=$("[name=1]").attr('name')#}
-       {#     console.log(nid)#}
-          nid=1
-          $.ajax({
-           url:"/get_notice.html",
-           type:"GET",
-           data:{nid:nid},
-           dataType: 'JSON',
-           success:function (arg) {
-               console.log(arg.data[0].id)
-             $("[class=1]").text(arg.data[0].data1)
-               $("[name=1]").text('')
-
-           }
-
-       })
-
-
-   })
-
-      $("[name=2]").click(function () {
-       {#nid=$("[name=1]").attr('name')#}
-       {#     console.log(nid)#}
-          nid=2
-          $.ajax({
-           url:"/get_notice.html",
-           type:"GET",
-           data:{nid:nid},
-           dataType: 'JSON',
-           success:function (arg) {
-               console.log(arg.data[0].id)
-             $("[class=2]").text(arg.data[0].data1)
-               $("[name=2]").text('')
-
-           }
-
-       })
-
-
-   })
-          $("[name=3]").click(function () {
-       {#nid=$("[name=1]").attr('name')#}
-       {#     console.log(nid)#}
-          nid=3
-          $.ajax({
-           url:"/get_notice.html",
-           type:"GET",
-           data:{nid:nid},
-           dataType: 'JSON',
-           success:function (arg) {
-               console.log(arg.data[0].id)
-             $("[class=3]").text(arg.data[0].data1)
-               $("[name=3]").text('')
-
-           }
-
-       })
-
-
-   })
-
-
-    $(function () {
-        var obj = new ScrollImg();
-        obj.fetchImg();
-        obj.scrollEvent();
-
-    });
-    function ScrollImg() {
-        this.NID = 0;
-        this.LASTPOSITION = 3;
-        this.fetchImg = function () {
-            var that = this;
-            $.ajax({
-                url: '/get_img.html',
-                type: 'GET',
-                data: {nid: that.NID},
-                dataType: 'JSON',
-                success: function (arg) {
-                    var img_list = arg.data;
-                    $.each(img_list, function (index, v) {
-                        var eqv = (index + that.LASTPOSITION + 1) % 4;
-                        {#console.log(eqv);#}
-                        var tag = document.createElement('img');
-                        tag.src = '/' + v.img;
-                        $('#container').children().eq(eqv).append(tag);
-                        if (index + 1 == img_list.length) {
-                            that.LASTPOSITION = eqv;
-                            {#that.NID = v.id;#}
-                    }
-                })
-            }
-        })
-    }
-
-
-         this.scrollEvent = function () {
-            var that = this;
-            $(window).scroll(function () {
-                var scrollTop = $(window).scrollTop();
-                var winHeight = $(window).height();
-                var docHeight = $(document).height();
-                if (scrollTop + winHeight == docHeight) {
-                    that.fetchImg();
+    $('.pic a').eq(0).css('display','block')
+    var index = 0
+    var l = $('.pic a').length;
+    function createli() {
+        for (var j = 0; j < l; j++) {
+            $('.cli').append('<li></li>')
         }
-        })
-        }
+        slid()
+    }
 
+    function slid() {
+
+        $('.cli li').mouseenter(function () {
+            i = $(this).index();
+            {# $('.pic a').eq(i).css('display','block')#}
+            {#$('.pic a').eq(i).siblings().css('display','none')#}
+             $('.cli li').eq(i).css('background','#265a88').siblings().css('background','#999999')
+            {#$('.cli li').eq(i).addClass("changecolor").siblings().removeClass("changecolor")#}
+            $('.pic a').eq(i).stop().fadeIn(200).siblings().stop().fadeOut(200)
+        })
 
     }
 
+    function goright() {
+        if (index == l - 1) {
+            index = -1
+        }
+        index++;
+        console.log(index)
+        {#$('.pic a').eq(index).css('display','block')#}
+        {#   $('.pic a').eq(index).siblings().css('display','none')#}
+        $('.cli li').eq(index).css('background','#265a88').siblings().css('background','#999999')
+        $('.pic a').eq(index).stop().fadeIn(200).siblings().stop().fadeOut(200)
+    }
 
-    {#var obj = new scrollImg()#}
-    {#obj.initImg()#}
-    {#obj.scrollEvent()#}
-    {#nid=0#}
-    {#LASTPOSITION=4#}
-    {#function initImg() {#}
-    {#    $.ajax({#}
-    {#        url:'/get_img.html',#}
-    {#        type:'GET',#}
-    {#        data:{'nid':nid},#}
-    {#        dataType:'JSON',#}
-    {#        success:function (arg) {#}
-    {#            var img_list = arg.data#}
-    {#            $.each(img_list,function (k,v) {#}
-    {#                var eqv = (k+LASTPOSITION+1)%5;#}
-    {#                console.log(eqv)#}
-    {#                var tag = document.createElement('img')#}
-    {#                tag.src = '/'+v.img#}
-    {#                $('#imgs').children().eq(eqv).append(tag)#}
-    {#                if(k+1 == img_list.length){#}
-    {#                    LASTPOSITION=eqv#}
-    {#                }#}
-    {#            })#}
-    {#        }#}
-    {#    })#}
+    c = setInterval(goright, 2000)
 
-    {#function scrollEvent() {#}
-    {#    $(window).scroll(function () {#}
-    {#            var win_height=$(window).height();#}
-    {#            var doc_height=$(document).height();#}
-    {#            var scr_height=$(window).scrollTop();#}
-    {#            if(win_height+scr_height == doc_height){#}
-    {#                initImg()#}
-    {#    }#}
-    {#    })#}
-    {##}
+    function goleft() {
+        if (index == 0) {
+            index = l
+        }
+        index--;
+        console.log(index)
+        {#$('.pic a').eq(index).css('display','block')#}
+        {#   $('.pic a').eq(index).siblings().css('display','none')#}
+       $('.cli li').eq(index).css('background','#265a88').siblings().css('background','#999999')
+        $('.pic a').eq(index).stop().fadeIn(200).siblings().stop().fadeOut(200)
+    }
 
-
+    $('.pic').hover(function () {
+            clearInterval(c)
+        },
+        function () {
+            c = setInterval(goright, 2000)
+        }
+    );
+    createli();
 </script>
 

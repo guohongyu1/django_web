@@ -24,3 +24,28 @@
 </script>
 </body>
 </html>
+
+
+
+<div class="book">
+        {% for item in cur_books %}
+             <article  style="width: 477px;float: left">
+                 <img src="{{ item.img }}" style="width: 102px;height: 136px;overflow: hidden;margin-left:-350px  ">
+                 <div style="width: 344px;float: left;padding: 20px;">
+                     <div>
+                        <p class=""><a href="{{ item.href }}" style="text-decoration: none;margin-left: 120px;">{{ item.name }}</a></p>
+                     <div style="overflow: hidden;height: 16px;margin-bottom: 6px;margin-left: 100px;margin-top: 20px">
+                        <p class="" style="float: left">{{ item.author }}</p>
+                         <p class="" style="float: left">{{ item.count }}</p>
+                     </div>
+                     <p class="intro" style="margin-left: 100px;margin-top: 15px">{{ item.book_intro }}</p>
+                     </div>
+                 </div>
+             <hr>
+             </article>
+        {% endfor %}
+</div>
+
+
+
+

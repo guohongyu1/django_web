@@ -78,7 +78,7 @@ class video(models.Model):
     classification=models.ForeignKey('Classification',null=True,blank=True,on_delete=models.CASCADE)
     title=models.CharField(max_length=32)
     summary=models.CharField(max_length=32)
-    img=models.ImageField(verbose_name='图片',upload_to='./static/video/')
+    img=models.ImageField(verbose_name='图片',upload_to='../static/video/')
     href=models.CharField(verbose_name='视频地址',max_length=256)
     create_date=models.DateTimeField(auto_now_add=True)
     class Meda:
@@ -86,4 +86,6 @@ class video(models.Model):
         verbose_name_plural='视频'
     def __str__(self):
         return self.title
+
+
 

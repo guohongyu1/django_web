@@ -3,16 +3,15 @@ from app import models
 from django.http import JsonResponse
 import json
 # Create your views here.
-def index(request):
+def index(request,**kwargs):
+    for k,v in kwargs.items():
+        kwargs[k]=int(v)
+    classification_id=kwargs.get('classification_id')
+    print(classification_id)
+    list_classification = models.Classification.objects.all()
     list_img=models.BxSlider.objects.all()
-    list_notice=models.notice.objects.all()
-    # flag2=request.GET.get('flag')
-    # print('..',flag2)
-    # flag=0
-    # if flag2:
-    #     flag=flag2
-    # print(flag)
-    # list_content=models.Reinr.objects.values('id','img','name')
+    video_list = models.video.objects.order_by('-create_date').values('title','img','href')[:10]
+    l=[i for i in range(1,len(list_img)+1)]
     return render(request,'index.html',locals())
 def get_notice(request):
     nid=request.GET.get('nid')
@@ -106,5 +105,6 @@ def get_img(request):
     }
     # return HttpResponse(json.dumps(ret))
     return JsonResponse(ret)
-def gg(request):
-    return render(request,'ghg.html')
+def imgs(request):
+    list_img = models.BxSlider.objects.all()
+    return render(request,'img.html',locals())

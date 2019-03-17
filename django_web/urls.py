@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from app import views
+from novel import views as v
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index.html',views.index),
     url('video-(?P<direction_id>(\d+))-(?P<classification_id>(\d+))-(?P<level_id>(\d+)).html',views.video),
-    # path('img.html',views.imgs),
     path('get_img.html', views.get_img),
-path('get_notice.html', views.get_notice),
-    path('',views.gg)
-
+    path('get_notice.html', views.get_notice),
+    path('img.html',views.imgs),
+    url('novel.html',v.novel)
 ]

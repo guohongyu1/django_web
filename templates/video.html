@@ -1,12 +1,12 @@
 {% include 'base.html' %}
     <style>
         .condition{
-            top: 10px;
+            margin: 20px 90px;
         }
-        .sel{
-
+        .video{
+            margin-left: 0;
+            margin-right:0;
         }
-
         .condition a {
             {#float: left;#}
             padding: 5px 8px;
@@ -16,20 +16,31 @@
 
         .condition a.active {
 
-            background-color: orangered;
+            background-color: dodgerblue;
             color: white;
         }
         .titles:hover{
             color: #67b168;
         }
+        .page-header{
+            background: ghostwhite;
+            margin-top: -20px;
+        }
+        .page{
+    padding: 20px 25px 10px 10px;
+    text-align: left;
+    {#margin-left: -200px;#}
+}
     </style>
+{#<hr/>#}
+<div class="condition" >
+<header class="page-header">
 <hr/>
-<div class="condition" style="position: relative">
-    <div>
+        <div>
         {% if kwargs.direction_id == 0 %}
-            <a class="active" href="/video-0-{{ kwargs.classification_id }}-{{ kwargs.level_id }}.html">全部</a>
+            <a class="active" href="/video-0-{{ kwargs.classification_id }}-{{ kwargs.level_id }}.html">地区</a>
         {% else %}
-            <a  href="/video-0-{{ kwargs.classification_id }}-{{ kwargs.level_id }}.html">全部</a>
+            <a  href="/video-0-{{ kwargs.classification_id }}-{{ kwargs.level_id }}.html">地区</a>
         {% endif %}
         {% for item in list_direction %}
             {% if item.id == kwargs.direction_id %}
@@ -42,9 +53,9 @@
 <hr/>
     <div>
         {% if kwargs.classification_id == 0 %}
-            <a class="active" href="/video-{{ kwargs.direction_id }}-0-{{ kwargs.level_id }}.html">全部</a>
+            <a class="active" href="/video-{{ kwargs.direction_id }}-0-{{ kwargs.level_id }}.html">类型</a>
         {% else %}
-            <a  href="/video-{{ kwargs.direction_id }}-0-{{ kwargs.level_id }}.html">全部</a>
+            <a  href="/video-{{ kwargs.direction_id }}-0-{{ kwargs.level_id }}.html">类型</a>
         {% endif %}
         {% for item in list_classification %}
             {% if item.id == kwargs.classification_id %}
@@ -57,9 +68,9 @@
 <hr/>
     <div>
          {% if kwargs.level_id == 0 %}
-            <a class="active" href="/video-{{ kwargs.direction_id }}-{{ kwargs.classification_id  }}-0.html">全部</a>
+            <a class="active" href="/video-{{ kwargs.direction_id }}-{{ kwargs.classification_id  }}-0.html">适宜人群</a>
         {% else %}
-            <a  href="/video-{{ kwargs.direction_id }}-{{ kwargs.classification_id  }}-0.html">全部</a>
+            <a  href="/video-{{ kwargs.direction_id }}-{{ kwargs.classification_id  }}-0.html">适宜人群</a>
         {% endif %}
         {% for item in list_level %}
             {% if item.id == kwargs.level_id %}
@@ -69,20 +80,34 @@
             {% endif %}
         {% endfor %}
     </div>
-{#    <h3>视频</h3>#}
-<hr/>
-<div style="">
+{#<hr/>#}
+</header>
+<div class="video">
         {% for item in list_video %}
-{#            <div >#}
              <a href="{{ item.href }}"  style="width: 18%">
                  <img src="{{ item.img }}" style="width: 100%;height:380px; ">
                  <p class="titles" style="text-align: center">{{ item.title }}</p>
              </a>
-
-{#            </div>#}
-
-{#        <span style="margin-left: 0">{{ item.title }}</span>#}
         {% endfor %}
 </div>
 
+</div>
+<div class="page">
+  <ul class="pagination" style="margin-left: 600px">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
 </div>
